@@ -1,10 +1,5 @@
 # api-exam-mds-mba1
 
-## Créer la base de données 
-
-Via un outil comme **dbeaver**, créer la base de données SQLite
-via le fichier `db/database.sqlite`
-
 ## Lancer le projet en local
 
 Installer les dépendances

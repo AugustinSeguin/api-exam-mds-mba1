@@ -1,39 +1,45 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { Sequelize } from "sequelize";
-
-import { actorRouter } from "./router/actor";
-import { movieRouter } from "./router/movie";
+import { Sequelize } from '@sequelize/core';
+import { PostgresDialect } from '@sequelize/postgres';
+// import { actorRouter } from "./router/actor";
+// import { movieRouter } from "./router/movie";
 import { authRouter } from "./router/auth";
-import { userRouter } from "./router/users";
 import { exportModels } from "./model/Model";
 import swaggerUIPath from "swagger-ui-express";
+import { honeyRouter } from "./router/honey";
 import swaggerjsonFilePath from "../docs/swagger.json";
 
 export const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: 'db/database.sqlite'
+  dialect: PostgresDialect,
+  database: 'honey',
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  host: process.env.DATABASE_HOST,
+  port: 5432,
+  ssl: true,
+  clientMinMessages: 'notice',
 });
+
 
 // sequelize.sync({ force: true });
 sequelize.sync();
 
-export const { Movie,
-  Actor,
+export const {
+  Honey,
   User,
-  TokenBlackList,
-  MovieActorModel } = exportModels(sequelize);
+  TokenBlackList
+  // MovieActorModel
+ } = exportModels(sequelize);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 const apiRouter = express.Router();
-apiRouter.use('/auth', authRouter);
-apiRouter.use('/movies', movieRouter);
-apiRouter.use('/actors', actorRouter);
-apiRouter.use('/users', userRouter);
+app.use('/api', authRouter);
+apiRouter.use('/honeys', honeyRouter);
 
 app.use("/api", apiRouter);
 
