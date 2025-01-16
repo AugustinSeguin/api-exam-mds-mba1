@@ -24,3 +24,13 @@ npm run dev
 ```
 
 L'application se lance sur le port défini dans le .env
+
+## Swagger documentation
+
+Disponible via: 
+```bash
+npm run swagger-autogen
+```
+
+http://localhost:1337/api-docs/
+

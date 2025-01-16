@@ -8,6 +8,8 @@ import { movieRouter } from "./router/movie";
 import { authRouter } from "./router/auth";
 import { userRouter } from "./router/users";
 import { exportModels } from "./model/Model";
+import swaggerUIPath from "swagger-ui-express";
+import swaggerjsonFilePath from "../docs/swagger.json";
 
 export const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -42,3 +44,9 @@ app.listen(process.env.PORT, () => {
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
 });
+
+if(process.env.ENV != "PRODUCTION")
+{
+  app.use("/api-docs", swaggerUIPath.serve, swaggerUIPath.setup(swaggerjsonFilePath));
+}
+
