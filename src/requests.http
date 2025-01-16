@@ -1,5 +1,5 @@
 ###
-POST http://localhost:1337/api/auth/local/register
+POST http://localhost:3102/register
 Content-Type: application/json
 
 {
@@ -9,97 +9,71 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:1337/api/auth/change-password
+POST http://localhost:3102/me-connecter
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
-
 {
-  "currentPassword": "Password123",
-  "password": "Password1234",
-  "passwordConfirmation": "Password1234"
+	"nom_utilisateur": "test1",
+	"password": "password"
 }
 
 ###
-POST http://localhost:1337/api/auth/local
-Content-Type: application/json
-
-{
-  "identifier": "augustinseguin@gmail.com",
-  "password": "Password123"
-}
-
-###
-POST http://localhost:1337/api/auth/logout
+POST http://localhost:3102/logout
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
 
 ###
-GET http://localhost:1337/api/users/me
+GET http://localhost:3102/users/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
 
 ###
-GET http://localhost:1337/api/
-
-###
-POST http://localhost:1337/api/movies
+POST http://localhost:3102/honeys
 Content-Type: application/json
 
 {
 	"title": "test",
-	"description": "test",
-	"director": "MOI"
+	"description": "222",
+	"price": 10
 }
 
 ###
-GET http://localhost:1337/api/movies/1
+GET http://localhost:3102/honeys/1
 
 ###
-PUT http://localhost:1337/api/movies/1
+PUT http://localhost:3102/honeys/1
 Content-Type: application/json
 {
 	"title": "test",
-	"description": "test",
-	"director": "MOI"
+	"description": "222",
+	"price": 10
 }
 
 ###
-DELETE http://localhost:1337/api/movies/1
+DELETE http://localhost:3102/honeys/1
 
 ###
-GET http://localhost:1337/api/actors
+GET http://localhost:3102/tags
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
 
 ###
-POST http://localhost:1337/api/actors
+GET http://localhost:3102/tags/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
+
+###
+POST http://localhost:3102/tags
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
 
 {
-    "data": {
-        "name": "Sonic Deluxe",
-        "description": "un hérisson bleu",
-        "price": 59,
-        "image": "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/software/switch/70010000040331/desc/d13123553d5a05ebd2f3217db24b35c13131e1cdcf9c5aeb1552ba8e67efd4d9"
-    }
+	"tag": "test"
 }
 
 ###
-GET http://localhost:1337/api/actors/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
-
-###
-PUT http://localhost:1337/api/actors/1
+PUT http://localhost:3102/tags/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
-
 {
-    "data": {
-        "name": "Sonic Deluxe",
-        "description": "un hérisson bleu",
-        "image": "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/software/switch/70010000040331/desc/d13123553d5a05ebd2f3217db24b35c13131e1cdcf9c5aeb1552ba8e67efd4d9",
-        "price": 500
-    }
+	"tag": "test"
 }
 
 ###
-DELETE http://localhost:1337/api/actors/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0b210b20iLCJlbWFpbCI6InRob21hc2xhZm9yZ2VAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMy0xMi0wN1QwOTowODo1Mi43NzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMi0wN1QwOToxMToxNC42MDdaIiwiaWF0IjoxNzAxOTQwMzIxfQ.tuzC-PVTqhF4qFaYOhC4wPxvK48EvNqtV-dh0moZLvI
+DELETE http://localhost:3102/tags/1
+
+

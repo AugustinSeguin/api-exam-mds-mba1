@@ -9,7 +9,7 @@ import { authRouter } from "./router/auth";
 import { exportModels } from "./model/Model";
 import swaggerUIPath from "swagger-ui-express";
 import { honeyRouter } from "./router/honey";
-import swaggerjsonFilePath from "../docs/swagger.json";
+import { userRouter } from "./router/users";
 
 export const sequelize = new Sequelize({
   dialect: PostgresDialect,
@@ -29,8 +29,9 @@ sequelize.sync();
 export const {
   Honey,
   User,
-  TokenBlackList
-  // MovieActorModel
+  TokenBlackList,
+  Tag,
+  HoneyTag
  } = exportModels(sequelize);
 
 const app = express();
@@ -38,10 +39,11 @@ app.use(cors());
 app.use(express.json());
 
 const apiRouter = express.Router();
-app.use('/api', authRouter);
-apiRouter.use('/honeys', honeyRouter);
+app.use('/', authRouter);
+apiRouter.use('/miels', honeyRouter);
+apiRouter.use('/users', userRouter);
 
-app.use("/api", apiRouter);
+app.use("/", apiRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}!`)
@@ -51,8 +53,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
 });
 
-if(process.env.ENV != "PRODUCTION")
-{
-  app.use("/api-docs", swaggerUIPath.serve, swaggerUIPath.setup(swaggerjsonFilePath));
-}
+// if(process.env.ENV != "PRODUCTION")
+// {
+//   import swaggerjsonFilePath from "../docs/swagger.json";
+//   app.use("/api-docs", swaggerUIPath.serve, swaggerUIPath.setup(swaggerjsonFilePath));
+// }
 

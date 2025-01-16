@@ -8,19 +8,18 @@ import { DecodeToken, checkToken } from "../middlewares/checkToken";
 export const authRouter = Router();
 
 authRouter.post("/me-connecter", async (req, res) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ where: { username: username } });
+    const { nom_utilisateur, mdp } = req.body;
+    const user = await User.findOne({ where: { username: nom_utilisateur } });
     if (!user) {
         res.status(400).json("Email or Password is incorrect");
     }
     else {
-        const isPasswordCorrect = await bcrypt.compare(password, user.dataValues.password);
+        const isPasswordCorrect = await bcrypt.compare(mdp, user.dataValues.password);
         if (isPasswordCorrect) {
             delete user.dataValues.password;
             const token = jwt.sign(user.dataValues, process.env.JWT_SECRET!);
-            res.json({
-                token,
-                ...user.dataValues
+            res.json({ letoken:
+                token
             });
         }
         else {

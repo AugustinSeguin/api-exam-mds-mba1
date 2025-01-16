@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { Honey }  from "..";
+import { checkToken } from "../middlewares/checkToken";
 
 export const honeyRouter = Router();
 
-honeyRouter.get("/", async (req, res) => {
+honeyRouter.get("/",  checkToken, async (req, res) => {
     const honey = await Honey.findAll();
     res.json(honey);
 });
 
-honeyRouter.get("/:id", async (req, res) => {
+honeyRouter.get("/:id",  checkToken, async (req, res) => {
     const honey = await Honey.findOne({
         where: { id: req.params.id },
     });
@@ -20,7 +21,7 @@ honeyRouter.get("/:id", async (req, res) => {
     }
 });
 
-honeyRouter.post("/", async (req, res) => {
+honeyRouter.post("/",  checkToken, async (req, res) => {
     const { title, description, price } = req.body;
     if (!title) {
         res.status(400).send("Missing required information: title");
@@ -31,7 +32,7 @@ honeyRouter.post("/", async (req, res) => {
     }
 });
 
-honeyRouter.put("/:id", async (req, res) => {
+honeyRouter.put("/:id",  checkToken, async (req, res) => {
     const { title, description, price } = req.body;
     const actual = await Honey.findOne({ where: { id: req.params.id } });
     if (actual) {
@@ -43,7 +44,7 @@ honeyRouter.put("/:id", async (req, res) => {
     }
 });
 
-honeyRouter.delete("/:id", async (req, res) => {
+honeyRouter.delete("/:id", checkToken, async (req, res) => {
     const actual = await Honey.findOne({ where: { id: req.params.id } });
     if (actual) {
         await actual.destroy();
